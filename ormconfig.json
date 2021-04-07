@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "34.95.239.214",
+  "port": 3306,
+  "username": "root",
+  "password": "Redeye@18",
+  "database": "easyit",
+  "migrations": ["./src/database/migrations/**.ts"],
+  "entities": ["./src/database/models/**.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
