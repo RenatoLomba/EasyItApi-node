@@ -25,7 +25,7 @@ export default class CreateExpertController {
       const expertCreatedResult = new CreateExpertDTOResult(expertCreated);
       return res.status(201).json(expertCreatedResult);
     } catch (ex) {
-      return res.status(400).json({ message: ex.message || 'Unexpected error' });
+      return res.status(400).json({ error: ex.message || 'Unexpected error' });
     }
   }
 }

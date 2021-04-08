@@ -9,6 +9,13 @@ export default class UserRepository implements IUserRepository {
     this.insertAsync = this.insertAsync.bind(this);
   }
 
+  async selectByIdAsync(id: string): Promise<UserEntity> {
+    const usersRepository = getRepository(User);
+    const user = await usersRepository.findOne({ id });
+    if (!user) return null;
+    return new UserEntity(user);
+  }
+
   async selectAsync(email: string): Promise<UserEntity> {
     const usersRepository = getRepository(User);
     const user = await usersRepository.findOne({ email });

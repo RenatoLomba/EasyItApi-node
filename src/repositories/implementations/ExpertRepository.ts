@@ -9,6 +9,13 @@ export default class ExpertRepository implements IExpertRepository {
     this.insertAsync = this.insertAsync.bind(this);
   }
 
+  async selectByIdAsync(id: string): Promise<ExpertEntity> {
+    const expertRepository = getRepository(Expert);
+    const expert = await expertRepository.findOne({ id });
+    if (!expert) return null;
+    return new ExpertEntity(expert);
+  }
+
   async selectByLocationAsync(location: string): Promise<ExpertEntity[]> {
     const expertRepository = getRepository(Expert);
     const experts = await expertRepository.find({ where: { location } });
