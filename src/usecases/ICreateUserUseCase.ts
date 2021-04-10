@@ -1,4 +1,4 @@
-import UserEntity from '../entities/UserEntity';
+import { UserEntity } from '../entities/UserEntity';
 import { ICreateUserDTO } from './dtos/ICreateUserDTO';
 
 export interface ICreateUserUseCase {

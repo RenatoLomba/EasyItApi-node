@@ -1,12 +1,19 @@
 import { getRepository } from 'typeorm';
-import UserEntity from '../../entities/UserEntity';
+import { UserEntity } from '../../entities/UserEntity';
 import User from '../../database/models/User';
 import { IUserRepository } from '../IUserRepository';
 
-export default class UserRepository implements IUserRepository {
+export class UserRepository implements IUserRepository {
   constructor() {
     this.selectAsync = this.selectAsync.bind(this);
     this.insertAsync = this.insertAsync.bind(this);
+  }
+
+  async selectCompleteAsync(email: string): Promise<UserEntity> {
+    const usersRepository = getRepository(User);
+    const user = await usersRepository.findOne({ email }, { relations: ['favorites'] });
+    if (!user) return null;
+    return new UserEntity(user);
   }
 
   async selectByIdAsync(id: string): Promise<UserEntity> {

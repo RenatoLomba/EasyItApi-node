@@ -1,17 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
-import { ICheckTokenUseCase } from '../../../usecases/ICheckTokenUseCase';
+import { ICheckTokenUseCase } from '../../usecases/ICheckTokenUseCase';
 
-export default class CheckTokenMiddleware {
+export class CheckTokenMiddleware {
   constructor(
     private checkTokenUseCase: ICheckTokenUseCase,
   ) {
-    this.handle = this.handle.bind(this);
+    this.check = this.check.bind(this);
   }
 
-  async handle(req: Request, res: Response, next: NextFunction): Promise<any> {
+  async check(req: Request, res: Response, next: NextFunction): Promise<void> {
     const { authorization } = req.headers;
     if (!authorization) {
-      return res.status(400).json({ error: 'Login Required' });
+      res.status(400).json({ error: 'Login Required' });
+      return;
     }
 
     const [, token] = authorization.split(' ');
@@ -21,9 +22,9 @@ export default class CheckTokenMiddleware {
 
       req.body.currentUser = { id: user.id, email: user.email };
 
-      return next();
+      next();
     } catch (error) {
-      return res.status(400).json({ error: error.message || 'Unexpected Error' });
+      res.status(400).json({ error: error.message || 'Unexpected Error' });
     }
   }
 }

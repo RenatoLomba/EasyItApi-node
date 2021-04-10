@@ -1,5 +1,8 @@
-import { Column, Entity, Unique } from 'typeorm';
+import {
+  Column, Entity, OneToMany, Unique,
+} from 'typeorm';
 import Base from './Base';
+import Favorite from './Favorite';
 
 @Entity('experts')
 export default class Expert extends Base {
@@ -19,6 +22,9 @@ export default class Expert extends Base {
 
   @Column()
   location: string;
+
+  @OneToMany(() => Favorite, (favorite) => favorite.expert)
+  favorites: Favorite[];
 
   constructor() {
     super();

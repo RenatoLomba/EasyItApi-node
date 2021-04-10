@@ -1,12 +1,12 @@
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import Token from '../../entities/Token';
+import { Token } from '../../entities/Token';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ILoginDTO } from '../dtos/ILoginDTO';
 import { ILoginUseCase } from '../ILoginUseCase';
-import environments from '../../main/environment';
+import { ENV } from '../../main/environment';
 
-export default class LoginUseCase implements ILoginUseCase {
+export class LoginUseCase implements ILoginUseCase {
   constructor(
     private userRepository: IUserRepository,
   ) {
@@ -14,7 +14,7 @@ export default class LoginUseCase implements ILoginUseCase {
   }
 
   async execute(user: ILoginDTO): Promise<Token> {
-    const userResult = await this.userRepository.selectAsync(user.email);
+    const userResult = await this.userRepository.selectCompleteAsync(user.email);
 
     if (!userResult) {
       throw new Error('User not found');
@@ -27,11 +27,11 @@ export default class LoginUseCase implements ILoginUseCase {
 
     const jwtToken = jwt.sign(
       { id: userResult.id, email: userResult.email },
-      environments.TOKEN_SECRET,
-      { expiresIn: environments.TOKEN_EXPIRES },
+      ENV.TOKEN_SECRET,
+      { expiresIn: ENV.TOKEN_EXPIRES },
     );
 
-    const token = new Token(userResult, jwtToken, environments.TOKEN_EXPIRES);
+    const token = new Token(userResult, jwtToken, ENV.TOKEN_EXPIRES);
     return token;
   }
 }

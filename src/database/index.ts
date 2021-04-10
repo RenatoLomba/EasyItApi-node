@@ -1,13 +1,13 @@
 import { Connection, ConnectionOptions, createConnection } from 'typeorm';
-import environments from '../main/environment';
+import { ENV } from '../main/environment';
 
 const connectionOptions: ConnectionOptions = {
   type: 'mysql',
-  host: environments.DB_HOST,
-  port: Number(environments.DB_PORT),
-  username: environments.DB_USERNAME,
-  password: environments.DB_PASSWORD,
-  database: process.env.NODE_ENV === 'test' ? environments.DB_TEST : environments.DB,
+  host: ENV.DB_HOST,
+  port: Number(ENV.DB_PORT),
+  username: ENV.DB_USERNAME,
+  password: ENV.DB_PASSWORD,
+  database: process.env.NODE_ENV === 'test' ? ENV.DB_TEST : ENV.DB,
   migrations: ['./src/database/migrations/**.ts'],
   entities: ['./src/database/models/**.ts'],
   cli: {
@@ -15,7 +15,9 @@ const connectionOptions: ConnectionOptions = {
   },
 };
 
-export default async (): Promise<Connection> => {
+const createLocalConnection = async (): Promise<Connection> => {
   const connection = await createConnection(connectionOptions);
   return connection;
 };
+
+export { createLocalConnection };

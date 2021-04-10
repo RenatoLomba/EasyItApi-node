@@ -1,11 +1,11 @@
-import FavoriteEntity from '../../entities/FavoriteEntity';
+import { FavoriteEntity } from '../../entities/FavoriteEntity';
 import { IExpertRepository } from '../../repositories/IExpertRepository';
 import { IFavoriteRepository } from '../../repositories/IFavoriteRepository';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { IFavoriteDTO } from '../dtos/IFavoriteDTO';
 import { IFavoriteUseCase } from '../IFavoriteUseCase';
 
-export default class FavoriteUseCase implements IFavoriteUseCase {
+export class FavoriteUseCase implements IFavoriteUseCase {
   constructor(
     private favoriteRepository: IFavoriteRepository,
     private userRepository: IUserRepository,

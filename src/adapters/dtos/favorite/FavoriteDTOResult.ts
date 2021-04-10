@@ -1,6 +1,6 @@
-import FavoriteEntity from '../../../entities/FavoriteEntity';
+import { FavoriteEntity } from '../../../entities/FavoriteEntity';
 
-export default class FavoriteDTOResult {
+export class FavoriteDTOResult {
   id: string;
 
   'user_id': string;

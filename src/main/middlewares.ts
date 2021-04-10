@@ -7,4 +7,4 @@ function middlewares(app: Express): void {
   app.use(express.static(resolve(__dirname, '..', '..', 'uploads', 'images')));
 }
 
-export default middlewares;
+export { middlewares };

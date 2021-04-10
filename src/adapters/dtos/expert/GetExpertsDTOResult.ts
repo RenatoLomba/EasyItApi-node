@@ -1,6 +1,6 @@
-import ExpertEntity from '../../../entities/ExpertEntity';
+import { ExpertEntity } from '../../../entities/ExpertEntity';
 
-export default class GetExpertsDTOResult {
+export class GetExpertsDTOResult {
   id: string;
 
   name: string;

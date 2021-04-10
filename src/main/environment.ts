@@ -1,3 +1,5 @@
 import dotenv from 'dotenv';
 
-export default dotenv.config().parsed;
+const ENV = dotenv.config().parsed;
+
+export { ENV };

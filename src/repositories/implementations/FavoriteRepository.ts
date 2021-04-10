@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import Favorite from '../../database/models/Favorite';
-import FavoriteEntity from '../../entities/FavoriteEntity';
+import { FavoriteEntity } from '../../entities/FavoriteEntity';
 import { IFavoriteRepository } from '../IFavoriteRepository';
 
-export default class FavoriteRepository implements IFavoriteRepository {
+export class FavoriteRepository implements IFavoriteRepository {
   constructor() {
     this.insertAsync = this.insertAsync.bind(this);
     this.deleteAsync = this.deleteAsync.bind(this);

@@ -1,4 +1,4 @@
-export default class ExpertEntity {
+export class ExpertEntity {
   id?: string;
 
   'created_at'?: Date;

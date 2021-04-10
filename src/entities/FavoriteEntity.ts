@@ -1,4 +1,4 @@
-export default class FavoriteEntity {
+export class FavoriteEntity {
   id?: string;
 
   'created_at'?: Date;

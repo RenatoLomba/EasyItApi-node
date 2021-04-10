@@ -1,4 +1,4 @@
-import FavoriteEntity from '../entities/FavoriteEntity';
+import { FavoriteEntity } from '../entities/FavoriteEntity';
 
 export interface IFavoriteRepository {
   insertAsync(favorite: FavoriteEntity): Promise<FavoriteEntity>;

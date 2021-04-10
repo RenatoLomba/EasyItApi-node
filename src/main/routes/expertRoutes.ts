@@ -1,11 +1,9 @@
 import { Router } from 'express';
-// import CheckToken from '../implementations/CheckToken';
-import CreateExpert from '../implementations/CreateExpert';
-import GetExperts from '../implementations/GetExperts';
+import { expertsController } from '../implementations/Experts';
 
 const expertRoutes = Router();
 
-expertRoutes.post('/', CreateExpert);
-expertRoutes.get('/', GetExperts);
+expertRoutes.post('/', expertsController.create);
+expertRoutes.get('/', expertsController.get);
 
-export default expertRoutes;
+export { expertRoutes };

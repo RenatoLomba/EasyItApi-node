@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import UserEntity from '../../entities/UserEntity';
+import { UserEntity } from '../../entities/UserEntity';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ICheckTokenUseCase } from '../ICheckTokenUseCase';
-import environments from '../../main/environment';
+import { ENV } from '../../main/environment';
 
-export default class CheckToken implements ICheckTokenUseCase {
+export class CheckTokenUseCase implements ICheckTokenUseCase {
   constructor(
     private userRepository: IUserRepository,
   ) {
@@ -12,7 +12,7 @@ export default class CheckToken implements ICheckTokenUseCase {
   }
 
   async execute(token: string): Promise<UserEntity> {
-    const payload: any = jwt.verify(token, environments.TOKEN_SECRET);
+    const payload: any = jwt.verify(token, ENV.TOKEN_SECRET);
     const { email } = payload;
 
     const user = await this.userRepository.selectAsync(email);

@@ -1,10 +1,10 @@
 import { hash } from 'bcrypt';
-import UserEntity from '../../entities/UserEntity';
+import { UserEntity } from '../../entities/UserEntity';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
 import { ICreateUserUseCase } from '../ICreateUserUseCase';
 
-export default class CreateUserUseCase implements ICreateUserUseCase {
+export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(
     private userRepository: IUserRepository,
   ) {

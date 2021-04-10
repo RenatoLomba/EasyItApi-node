@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import Expert from '../../database/models/Expert';
-import ExpertEntity from '../../entities/ExpertEntity';
+import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../IExpertRepository';
 
-export default class ExpertRepository implements IExpertRepository {
+export class ExpertRepository implements IExpertRepository {
   constructor() {
     this.selectAsync = this.selectAsync.bind(this);
     this.insertAsync = this.insertAsync.bind(this);

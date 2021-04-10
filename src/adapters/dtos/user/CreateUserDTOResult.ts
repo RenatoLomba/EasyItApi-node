@@ -1,6 +1,6 @@
-import UserEntity from '../../../entities/UserEntity';
+import { UserEntity } from '../../../entities/UserEntity';
 
-export default class CreateUserDTOResult {
+export class CreateUserDTOResult {
   id: string;
 
   name: string;

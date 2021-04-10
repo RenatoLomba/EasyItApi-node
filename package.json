@@ -8,7 +8,7 @@
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server.ts",
     "lint": "eslint . --ext .ts,.js",
     "typeorm": "tsnd node_modules/typeorm/cli.js",
-    "test": "set NODE_ENV=test&&jest"
+    "test": "set NODE_ENV=test&&jest -i"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

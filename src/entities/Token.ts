@@ -1,6 +1,6 @@
-import UserEntity from './UserEntity';
+import { UserEntity } from './UserEntity';
 
-export default class Token {
+export class Token {
   user: UserEntity;
 
   token: string;

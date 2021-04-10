@@ -1,4 +1,6 @@
-export default class UserEntity {
+import { FavoriteEntity } from './FavoriteEntity';
+
+export class UserEntity {
   id?: string;
 
   name: string;
@@ -10,6 +12,8 @@ export default class UserEntity {
   'created_at'?: Date;
 
   'updated_at'?: Date;
+
+  favorites?: FavoriteEntity[];
 
   constructor(user: UserEntity) {
     Object.assign(this, user);

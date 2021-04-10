@@ -1,4 +1,4 @@
-import ExpertEntity from '../entities/ExpertEntity';
+import { ExpertEntity } from '../entities/ExpertEntity';
 
 export interface IExpertRepository {
   selectAsync(email: string): Promise<ExpertEntity>;

@@ -1,4 +1,4 @@
-import ExpertEntity from '../entities/ExpertEntity';
+import { ExpertEntity } from '../entities/ExpertEntity';
 import { ICreateExpertDTO } from './dtos/ICreateExpertDTO';
 
 export interface ICreateExpertUseCase {

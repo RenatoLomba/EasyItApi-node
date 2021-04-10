@@ -1,4 +1,4 @@
-import FavoriteEntity from '../entities/FavoriteEntity';
+import { FavoriteEntity } from '../entities/FavoriteEntity';
 import { IFavoriteDTO } from './dtos/IFavoriteDTO';
 
 export interface IFavoriteUseCase {

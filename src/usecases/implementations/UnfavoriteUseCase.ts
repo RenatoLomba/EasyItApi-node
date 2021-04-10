@@ -1,7 +1,7 @@
 import { IFavoriteRepository } from '../../repositories/IFavoriteRepository';
 import { IUnfavoriteUseCase } from '../IUnfavoriteUseCase';
 
-export default class UnfavoriteUseCase implements IUnfavoriteUseCase {
+export class UnfavoriteUseCase implements IUnfavoriteUseCase {
   constructor(
     private favoriteRepository: IFavoriteRepository,
   ) {

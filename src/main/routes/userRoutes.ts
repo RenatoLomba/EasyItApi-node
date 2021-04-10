@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import createUser from '../implementations/CreateUser';
-import login from '../implementations/Login';
+import { usersController } from '../implementations/Users';
 
 const userRoutes = Router();
 
-userRoutes.post('/', createUser);
-userRoutes.post('/login', login);
+userRoutes.post('/', usersController.create);
+userRoutes.post('/login', usersController.login);
 
-export default userRoutes;
+export { userRoutes };

@@ -1,10 +1,10 @@
 import { hash } from 'bcrypt';
-import ExpertEntity from '../../entities/ExpertEntity';
+import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../../repositories/IExpertRepository';
 import { ICreateExpertDTO } from '../dtos/ICreateExpertDTO';
 import { ICreateExpertUseCase } from '../ICreateExpertUseCase';
 
-export default class CreateExpertUseCase implements ICreateExpertUseCase {
+export class CreateExpertUseCase implements ICreateExpertUseCase {
   constructor(
     private expertRepository: IExpertRepository,
   ) {

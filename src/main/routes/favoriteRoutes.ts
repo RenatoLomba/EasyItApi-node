@@ -1,11 +1,9 @@
 import { Router } from 'express';
-// import CheckToken from '../implementations/CheckToken';
-import Favorite from '../implementations/Favorite';
-import Unfavorite from '../implementations/Unfavorite';
+import { favoritesController } from '../implementations/Favorites';
 
 const favoriteRoutes = Router();
 
-favoriteRoutes.post('/', Favorite);
-favoriteRoutes.delete('/:id', Unfavorite);
+favoriteRoutes.post('/', favoritesController.create);
+favoriteRoutes.delete('/:id', favoritesController.delete);
 
-export default favoriteRoutes;
+export { favoriteRoutes };

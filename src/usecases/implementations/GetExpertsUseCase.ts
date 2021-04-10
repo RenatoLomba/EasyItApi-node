@@ -1,8 +1,8 @@
-import ExpertEntity from '../../entities/ExpertEntity';
+import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../../repositories/IExpertRepository';
 import { IGetExpertsUseCase } from '../IGetExpertsUseCase';
 
-export default class GetExpertsUseCase implements IGetExpertsUseCase {
+export class GetExpertsUseCase implements IGetExpertsUseCase {
   constructor(
     private expertRepository: IExpertRepository,
   ) {
