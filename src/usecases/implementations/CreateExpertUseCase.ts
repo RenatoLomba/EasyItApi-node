@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt';
+import { DefaultError } from '../../adapters/errors/DefaultError';
 import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../../repositories/IExpertRepository';
 import { ICreateExpertDTO } from '../dtos/ICreateExpertDTO';
@@ -15,7 +16,7 @@ export class CreateExpertUseCase implements ICreateExpertUseCase {
     const expertAlreadyExists = await this.expertRepository.selectAsync(expert.email);
 
     if (expertAlreadyExists) {
-      throw new Error('Expert already exists');
+      throw new DefaultError('Expert already exists');
     }
 
     const newExpert = new ExpertEntity(expert);

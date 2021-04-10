@@ -5,6 +5,7 @@ import { IUserRepository } from '../../repositories/IUserRepository';
 import { ILoginDTO } from '../dtos/ILoginDTO';
 import { ILoginUseCase } from '../ILoginUseCase';
 import { ENV } from '../../main/environment';
+import { DefaultError } from '../../adapters/errors/DefaultError';
 
 export class LoginUseCase implements ILoginUseCase {
   constructor(
@@ -17,12 +18,12 @@ export class LoginUseCase implements ILoginUseCase {
     const userResult = await this.userRepository.selectCompleteAsync(user.email);
 
     if (!userResult) {
-      throw new Error('User not found');
+      throw new DefaultError('User not found');
     }
 
     const authenticated = await compare(user.password, userResult.password);
     if (!authenticated) {
-      throw new Error('Password invalid');
+      throw new DefaultError('Password invalid');
     }
 
     const jwtToken = jwt.sign(

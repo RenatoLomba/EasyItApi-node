@@ -1,3 +1,4 @@
+import { DefaultError } from '../../adapters/errors/DefaultError';
 import { FavoriteEntity } from '../../entities/FavoriteEntity';
 import { IExpertRepository } from '../../repositories/IExpertRepository';
 import { IFavoriteRepository } from '../../repositories/IFavoriteRepository';
@@ -18,13 +19,13 @@ export class FavoriteUseCase implements IFavoriteUseCase {
     const userExist = await this.userRepository.selectByIdAsync(favorite.user_id);
 
     if (!userExist) {
-      throw new Error('User not found');
+      throw new DefaultError('User not found');
     }
 
     const expertExist = await this.expertRepository.selectByIdAsync(favorite.expert_id);
 
     if (!expertExist) {
-      throw new Error('Expert not found');
+      throw new DefaultError('Expert not found');
     }
 
     const newFavorite = new FavoriteEntity(favorite);

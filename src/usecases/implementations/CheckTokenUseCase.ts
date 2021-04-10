@@ -3,6 +3,7 @@ import { UserEntity } from '../../entities/UserEntity';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ICheckTokenUseCase } from '../ICheckTokenUseCase';
 import { ENV } from '../../main/environment';
+import { DefaultError } from '../../adapters/errors/DefaultError';
 
 export class CheckTokenUseCase implements ICheckTokenUseCase {
   constructor(
@@ -17,7 +18,7 @@ export class CheckTokenUseCase implements ICheckTokenUseCase {
 
     const user = await this.userRepository.selectAsync(email);
     if (!user) {
-      throw new Error('User not found');
+      throw new DefaultError('User not found');
     }
 
     return user;

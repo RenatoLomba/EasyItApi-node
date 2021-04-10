@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt';
+import { DefaultError } from '../../adapters/errors/DefaultError';
 import { UserEntity } from '../../entities/UserEntity';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
@@ -15,7 +16,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     const userAlreadyExists = await this.userRepository.selectAsync(user.email);
 
     if (userAlreadyExists) {
-      throw new Error('User already exists');
+      throw new DefaultError('User already exists');
     }
 
     const newUser = new UserEntity(user);
