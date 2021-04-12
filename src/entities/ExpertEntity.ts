@@ -1,3 +1,5 @@
+import { ServiceEntity } from './ServiceEntity';
+
 export class ExpertEntity {
   id?: string;
 
@@ -14,6 +16,8 @@ export class ExpertEntity {
   stars?: number;
 
   location: string;
+
+  services?: ServiceEntity[];
 
   constructor(expert: ExpertEntity) {
     Object.assign(this, expert);

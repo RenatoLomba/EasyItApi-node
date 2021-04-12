@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import validator from 'validator';
 import { ICreateExpertUseCase } from '../../usecases/ICreateExpertUseCase';
+import { IGetCompleteExpertUseCase } from '../../usecases/IGetCompleteExpertUseCase';
 import { IGetExpertsUseCase } from '../../usecases/IGetExpertsUseCase';
 import { CreateExpertDTOResult } from '../dtos/expert/CreateExpertDTOResult';
+import { GetCompleteExpertDTO } from '../dtos/expert/GetCompleteExpertDTO';
 import { GetExpertsDTOResult } from '../dtos/expert/GetExpertsDTOResult';
 import { DefaultError } from '../errors/DefaultError';
 
@@ -10,9 +12,11 @@ export class ExpertsController {
   constructor(
     private createExpertUseCase: ICreateExpertUseCase,
     private getExpertsUseCase: IGetExpertsUseCase,
+    private getCompleteExpertUseCase: IGetCompleteExpertUseCase,
   ) {
     this.create = this.create.bind(this);
     this.get = this.get.bind(this);
+    this.show = this.show.bind(this);
   }
 
   async create(req: Request, res: Response): Promise<Response> {
@@ -37,5 +41,13 @@ export class ExpertsController {
     const expertsList = experts.length > 0
       ? experts.map((expert) => new GetExpertsDTOResult(expert)) : [];
     return res.status(200).json(expertsList);
+  }
+
+  async show(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    if (!id) throw new DefaultError('Id não informado');
+    const expert = await this.getCompleteExpertUseCase.execute(id);
+    const expertResult = new GetCompleteExpertDTO(expert);
+    return res.status(200).json(expertResult);
   }
 }

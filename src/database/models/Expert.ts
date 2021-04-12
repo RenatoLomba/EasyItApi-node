@@ -3,6 +3,7 @@ import {
 } from 'typeorm';
 import Base from './Base';
 import Favorite from './Favorite';
+import Service from './Service';
 
 @Entity('experts')
 export default class Expert extends Base {
@@ -25,6 +26,9 @@ export default class Expert extends Base {
 
   @OneToMany(() => Favorite, (favorite) => favorite.expert)
   favorites: Favorite[];
+
+  @OneToMany(() => Service, (service) => service.expert)
+  services: Service[];
 
   constructor() {
     super();

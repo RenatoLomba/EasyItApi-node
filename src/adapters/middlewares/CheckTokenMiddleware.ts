@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ICheckTokenUseCase } from '../../usecases/ICheckTokenUseCase';
+import { DefaultError } from '../errors/DefaultError';
 
 export class CheckTokenMiddleware {
   constructor(
@@ -10,21 +11,14 @@ export class CheckTokenMiddleware {
 
   async check(req: Request, res: Response, next: NextFunction): Promise<void> {
     const { authorization } = req.headers;
-    if (!authorization) {
-      res.status(400).json({ error: 'Login Required' });
-      return;
-    }
+    if (!authorization) throw new DefaultError('Login Required');
 
     const [, token] = authorization.split(' ');
 
-    try {
-      const user = await this.checkTokenUseCase.execute(token);
+    const user = await this.checkTokenUseCase.execute(token);
 
-      req.body.currentUser = { id: user.id, email: user.email };
+    req.body.currentUser = { id: user.id, email: user.email };
 
-      next();
-    } catch (error) {
-      res.status(400).json({ error: error.message || 'Unexpected Error' });
-    }
+    return next();
   }
 }

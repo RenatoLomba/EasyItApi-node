@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { checkTokenMiddleware } from '../implementations/CheckToken';
 import { favoritesController } from '../implementations/Favorites';
 
 const favoriteRoutes = Router();

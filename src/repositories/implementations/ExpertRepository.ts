@@ -4,9 +4,11 @@ import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../IExpertRepository';
 
 export class ExpertRepository implements IExpertRepository {
-  constructor() {
-    this.selectAsync = this.selectAsync.bind(this);
-    this.insertAsync = this.insertAsync.bind(this);
+  async selectCompleteAsync(id: string): Promise<ExpertEntity> {
+    const expertRepository = getRepository(Expert);
+    const expert = await expertRepository.findOne({ id }, { relations: ['services'] });
+    if (!expert) return null;
+    return new ExpertEntity(expert);
   }
 
   async selectByIdAsync(id: string): Promise<ExpertEntity> {
