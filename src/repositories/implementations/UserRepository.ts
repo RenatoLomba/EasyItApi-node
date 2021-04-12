@@ -11,7 +11,8 @@ export class UserRepository implements IUserRepository {
 
   async selectCompleteAsync(email: string): Promise<UserEntity> {
     const usersRepository = getRepository(User);
-    const user = await usersRepository.findOne({ email }, { relations: ['favorites'] });
+    const user = await usersRepository
+      .findOne({ email }, { relations: ['favorites', 'testimonials'] });
     if (!user) return null;
     return new UserEntity(user);
   }

@@ -1,6 +1,7 @@
 import {
-  Column, Entity, JoinColumn, ManyToOne,
+  Column, Entity, JoinColumn, ManyToOne, OneToMany,
 } from 'typeorm';
+import { Appointment } from './Appointment';
 import Base from './Base';
 import Expert from './Expert';
 
@@ -12,6 +13,9 @@ export default class Service extends Base {
   @ManyToOne(() => Expert, (expert) => expert.services)
   @JoinColumn({ name: 'expert_id' })
   expert: Expert;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.service)
+  appointments: Appointment[];
 
   @Column()
   name: string;

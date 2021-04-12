@@ -1,10 +1,6 @@
 import { Token } from '../../../entities/Token';
-
-interface FavoriteDTO {
-  id?: string;
-  'user_id': string;
-  'expert_id': string;
-}
+import { FavoriteDTOResult } from '../favorite/FavoriteDTOResult';
+import { TestimonialDTOResult } from '../testimonial/TestimonialDTOResult';
 
 export class LoginDTOResult {
   id: string;
@@ -17,7 +13,9 @@ export class LoginDTOResult {
 
   expiresIn: string;
 
-  favorites: FavoriteDTO[];
+  favorites: FavoriteDTOResult[];
+
+  testimonials: TestimonialDTOResult[];
 
   constructor(token: Token) {
     this.id = token.user.id;
@@ -25,8 +23,22 @@ export class LoginDTOResult {
     this.email = token.user.email;
     this.token = token.token;
     this.expiresIn = token.expiresIn;
-    this.favorites = token.user.favorites.map((favorite) => (
-      { id: favorite.id, expert_id: favorite.expert_id, user_id: favorite.user_id } as FavoriteDTO
-    ));
+    this.favorites = token.user.favorites.length > 0 ? token.user.favorites.map((favorite) => (
+      {
+        id: favorite.id,
+        expert_id: favorite.expert_id,
+        user_id: favorite.user_id,
+      } as FavoriteDTOResult
+    )) : [];
+    this.testimonials = token.user.testimonials.length > 0 ? token.user.testimonials
+      .map((testimonial) => (
+        {
+          expert_id: testimonial.expert_id,
+          user_id: testimonial.user_id,
+          id: testimonial.id,
+          stars: testimonial.stars,
+          description: testimonial.description,
+        } as TestimonialDTOResult
+      )) : [];
   }
 }

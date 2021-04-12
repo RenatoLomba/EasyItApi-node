@@ -1,6 +1,7 @@
 import {
   Column, Entity, OneToMany, Unique,
 } from 'typeorm';
+import { Appointment } from './Appointment';
 import Base from './Base';
 import Favorite from './Favorite';
 import Service from './Service';
@@ -33,6 +34,9 @@ export default class Expert extends Base {
 
   @OneToMany(() => Testimonial, (testimonial) => testimonial.expert)
   testimonials: Testimonial[];
+
+  @OneToMany(() => Appointment, (appointment) => appointment.expert)
+  appointments: Appointment[];
 
   constructor() {
     super();

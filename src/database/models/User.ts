@@ -1,6 +1,7 @@
 import {
   Column, Entity, OneToMany, Unique,
 } from 'typeorm';
+import { Appointment } from './Appointment';
 import Base from './Base';
 import Favorite from './Favorite';
 import { Testimonial } from './Testimonial';
@@ -24,6 +25,9 @@ class User extends Base {
 
   @OneToMany(() => Testimonial, (testimonial) => testimonial.user)
   testimonials: Testimonial[];
+
+  @OneToMany(() => Appointment, (appointment) => appointment.user)
+  appointments: Appointment[];
 }
 
 export default User;

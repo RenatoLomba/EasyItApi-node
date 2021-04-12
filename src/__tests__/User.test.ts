@@ -69,6 +69,7 @@ describe('User', () => {
       expect(response.body).toHaveProperty('token');
       expect(response.body).toHaveProperty('expiresIn');
       expect(response.body).toHaveProperty('favorites');
+      expect(response.body).toHaveProperty('testimonials');
     });
   });
 });
