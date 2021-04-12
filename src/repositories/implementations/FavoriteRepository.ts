@@ -9,6 +9,14 @@ export class FavoriteRepository implements IFavoriteRepository {
     this.deleteAsync = this.deleteAsync.bind(this);
   }
 
+  async selectByExpertAndUser(expertId: string, userId: string): Promise<FavoriteEntity> {
+    const favoriteRepository = getRepository(Favorite);
+    const favorite = await favoriteRepository
+      .findOne({ where: { expert_id: expertId, user_id: userId } });
+    if (!favorite) return null;
+    return new FavoriteEntity(favorite);
+  }
+
   async insertAsync(favorite: FavoriteEntity): Promise<FavoriteEntity> {
     const favoriteRepository = getRepository(Favorite);
     const newFavorite = favoriteRepository.create(favorite);

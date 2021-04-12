@@ -3,6 +3,7 @@ import {
 } from 'typeorm';
 import Base from './Base';
 import Favorite from './Favorite';
+import { Testimonial } from './Testimonial';
 // import { v4 as uuid } from 'uuid';
 
 @Entity('users')
@@ -20,6 +21,9 @@ class User extends Base {
 
   @OneToMany(() => Favorite, (favorite) => favorite.user)
   favorites: Favorite[];
+
+  @OneToMany(() => Testimonial, (testimonial) => testimonial.user)
+  testimonials: Testimonial[];
 }
 
 export default User;

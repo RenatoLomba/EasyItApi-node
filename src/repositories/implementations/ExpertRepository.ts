@@ -4,6 +4,18 @@ import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../IExpertRepository';
 
 export class ExpertRepository implements IExpertRepository {
+  async updateAsync(expert: ExpertEntity): Promise<ExpertEntity> {
+    const expertRepository = getRepository(Expert);
+    const actualExpert = await expertRepository.findOne({ id: expert.id });
+    actualExpert.name = expert.name;
+    actualExpert.email = expert.email;
+    actualExpert.location = expert.location;
+    actualExpert.password = expert.password;
+    actualExpert.stars = expert.stars;
+    await expertRepository.save(actualExpert);
+    return new ExpertEntity(actualExpert);
+  }
+
   async selectCompleteAsync(id: string): Promise<ExpertEntity> {
     const expertRepository = getRepository(Expert);
     const expert = await expertRepository.findOne({ id }, { relations: ['services'] });

@@ -28,6 +28,11 @@ export class FavoriteUseCase implements IFavoriteUseCase {
       throw new DefaultError('Expert not found');
     }
 
+    const favoriteAlreadyExist = await this.favoriteRepository
+      .selectByExpertAndUser(expertExist.id, userExist.id);
+
+    if (favoriteAlreadyExist) throw new DefaultError('Usuário já favoritou este Expert');
+
     const newFavorite = new FavoriteEntity(favorite);
     const favoriteCreated = await this.favoriteRepository.insertAsync(newFavorite);
     return favoriteCreated;

@@ -3,6 +3,7 @@ import { expertRoutes } from './routes/expertRoutes';
 import { favoriteRoutes } from './routes/favoriteRoutes';
 import { homeRoutes } from './routes/homeRoutes';
 import { serviceRoutes } from './routes/serviceRoutes';
+import { testimonialRoutes } from './routes/testimonialRoutes';
 import { userRoutes } from './routes/userRoutes';
 
 function router(app: Express): void {
@@ -11,6 +12,7 @@ function router(app: Express): void {
   app.use('/experts', expertRoutes);
   app.use('/favorites', favoriteRoutes);
   app.use('/services', serviceRoutes);
+  app.use('/testimonials', testimonialRoutes);
 }
 
 export { router };
