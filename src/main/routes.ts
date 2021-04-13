@@ -5,6 +5,7 @@ import { favoriteRoutes } from './routes/favoriteRoutes';
 import { homeRoutes } from './routes/homeRoutes';
 import { serviceRoutes } from './routes/serviceRoutes';
 import { testimonialRoutes } from './routes/testimonialRoutes';
+import { thumbnailsRoutes } from './routes/thumbnailRoutes';
 import { userRoutes } from './routes/userRoutes';
 
 function router(app: Express): void {
@@ -15,6 +16,7 @@ function router(app: Express): void {
   app.use('/services', serviceRoutes);
   app.use('/testimonials', testimonialRoutes);
   app.use('/appointments', appointmentRoutes);
+  app.use('/thumbnails', thumbnailsRoutes);
 }
 
 export { router };
