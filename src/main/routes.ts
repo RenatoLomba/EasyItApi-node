@@ -1,4 +1,6 @@
-import { Express } from 'express';
+import {
+  Express,
+} from 'express';
 import { appointmentRoutes } from './routes/appointmentRoutes';
 import { expertRoutes } from './routes/expertRoutes';
 import { favoriteRoutes } from './routes/favoriteRoutes';

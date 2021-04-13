@@ -1,4 +1,5 @@
 import { ServiceEntity } from './ServiceEntity';
+import { ThumbnailEntity } from './ThumbnailEntity';
 
 export class ExpertEntity {
   id?: string;
@@ -18,6 +19,8 @@ export class ExpertEntity {
   location: string;
 
   services?: ServiceEntity[];
+
+  thumbnails?: ThumbnailEntity[];
 
   constructor(expert: ExpertEntity) {
     Object.assign(this, expert);

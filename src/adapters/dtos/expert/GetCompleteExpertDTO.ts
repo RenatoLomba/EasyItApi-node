@@ -1,5 +1,6 @@
 import { ExpertEntity } from '../../../entities/ExpertEntity';
 import { ServiceDTOResult } from '../service/ServiceDTOResult';
+import { ThumbnailResult } from '../thumbnail/ThumnailResult';
 
 export class GetCompleteExpertDTO {
   id: string;
@@ -14,6 +15,8 @@ export class GetCompleteExpertDTO {
 
   services: ServiceDTOResult[];
 
+  thumbnails: ThumbnailResult[];
+
   constructor(props: ExpertEntity) {
     this.id = props.id;
     this.email = props.email;
@@ -22,5 +25,7 @@ export class GetCompleteExpertDTO {
     this.stars = props.stars;
     this.services = props.services.length > 0
       ? props.services.map((service) => new ServiceDTOResult(service)) : [];
+    this.thumbnails = props.thumbnails.length > 0
+      ? props.thumbnails.map((thumbnail) => new ThumbnailResult(thumbnail)) : [];
   }
 }

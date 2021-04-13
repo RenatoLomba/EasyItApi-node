@@ -18,7 +18,7 @@ export class ExpertRepository implements IExpertRepository {
 
   async selectCompleteAsync(id: string): Promise<ExpertEntity> {
     const expertRepository = getRepository(Expert);
-    const expert = await expertRepository.findOne({ id }, { relations: ['services'] });
+    const expert = await expertRepository.findOne({ id }, { relations: ['services', 'thumbnails'] });
     if (!expert) return null;
     return new ExpertEntity(expert);
   }

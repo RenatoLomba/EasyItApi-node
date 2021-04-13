@@ -1,16 +1,37 @@
-import multer from 'multer';
+import multer, {
+  StorageEngine, Options, FileFilterCallback, ErrorCode,
+} from 'multer';
 import { resolve } from 'path';
+import { Request } from 'express';
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, resolve(__dirname, '..', '..', '..', 'uploads', 'images'));
-  },
-  filename(req, file, cb) {
-    const rand = Math.floor(Math.random() * (1000 - 1) + 1);
-    const date = new Date();
-    const name = `easyIt_${rand}_${date.getDate()}-${date.getMonth()}-${date.getFullYear()}_${file.originalname}`;
-    cb(null, name);
-  },
-});
+class MulterConfig implements Options {
+  readonly storage: StorageEngine;
 
-export const upload = multer({ storage });
+  readonly fileFilter: (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => void;
+
+  constructor() {
+    this.fileFilter = (req, file, cb) => {
+      if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
+        return cb(new multer.MulterError(
+          'LIMIT_UNEXPECTED_FILE' as ErrorCode,
+          'Invalid File, must be png or jpeg',
+        ));
+      }
+
+      return cb(null, true);
+    };
+    this.storage = multer.diskStorage({
+      destination(req, file, cb) {
+        cb(null, resolve(__dirname, '..', '..', '..', 'uploads', 'images'));
+      },
+      filename(req, file, cb) {
+        const rand = Math.floor(Math.random() * (1000 - 1) + 1);
+        const name = `easyIt-${rand}-${Date.now()}-${file.originalname}`;
+        cb(null, name);
+      },
+    });
+  }
+}
+const multerConfig = new MulterConfig();
+const uploader = multer(multerConfig);
+export { uploader };

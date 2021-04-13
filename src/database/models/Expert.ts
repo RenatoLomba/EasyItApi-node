@@ -6,6 +6,7 @@ import Base from './Base';
 import Favorite from './Favorite';
 import Service from './Service';
 import { Testimonial } from './Testimonial';
+import { Thumbnail } from './Thumbnail';
 
 @Entity('experts')
 export default class Expert extends Base {
@@ -37,6 +38,9 @@ export default class Expert extends Base {
 
   @OneToMany(() => Appointment, (appointment) => appointment.expert)
   appointments: Appointment[];
+
+  @OneToMany(() => Thumbnail, (thumbnail) => thumbnail.expert)
+  thumbnails: Thumbnail[];
 
   constructor() {
     super();
