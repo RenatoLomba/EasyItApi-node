@@ -23,9 +23,9 @@ export class ThumbnailsController {
       expert_id: expertId,
       image: Buffer.from(encodedImage, 'base64'),
       original_name: req.file.originalname,
+      file_name: req.file.filename,
     });
     const thumbnailResult = new ThumbnailResult(thumbnail);
-    fs.rmSync(req.file.path);
     return res.status(200).json(thumbnailResult);
   }
 }

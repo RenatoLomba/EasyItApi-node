@@ -21,4 +21,7 @@ export class Thumbnail extends Base {
 
   @Column()
   'original_name': string;
+
+  @Column()
+  'file_name': string;
 }

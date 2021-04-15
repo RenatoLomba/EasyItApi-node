@@ -13,6 +13,8 @@ export class ThumbnailEntity {
 
   'original_name': string;
 
+  'file_name': string;
+
   constructor(thumbnail: ThumbnailEntity) {
     Object.assign(this, thumbnail);
   }
