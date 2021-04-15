@@ -4,7 +4,6 @@ import { Token } from '../../entities/Token';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { ILoginDTO } from '../dtos/ILoginDTO';
 import { ILoginUseCase } from '../ILoginUseCase';
-import { ENV } from '../../main/environment';
 import { DefaultError } from '../../adapters/errors/DefaultError';
 
 export class LoginUseCase implements ILoginUseCase {
@@ -28,11 +27,11 @@ export class LoginUseCase implements ILoginUseCase {
 
     const jwtToken = jwt.sign(
       { id: userResult.id, email: userResult.email },
-      ENV.TOKEN_SECRET,
-      { expiresIn: ENV.TOKEN_EXPIRES },
+      process.env.TOKEN_SECRET,
+      { expiresIn: process.env.TOKEN_EXPIRES },
     );
 
-    const token = new Token(userResult, jwtToken, ENV.TOKEN_EXPIRES);
+    const token = new Token(userResult, jwtToken, process.env.TOKEN_EXPIRES);
     return token;
   }
 }

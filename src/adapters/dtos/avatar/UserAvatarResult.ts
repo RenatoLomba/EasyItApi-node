@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { resolve } from 'path';
-import { ENV } from '../../../main/environment';
 import { UserAvatarEntity } from '../../../entities/UserAvatarEntity';
 
 export class UserAvatarResult {
@@ -26,6 +25,6 @@ export class UserAvatarResult {
     const path = resolve('uploads', 'images', avatar.file_name);
 
     fs.writeFileSync(path, avatar.image);
-    this.image = `${ENV.COMPLETE_URL}/${avatar.file_name}`;
+    this.image = `${process.env.COMPLETE_URL}/${avatar.file_name}`;
   }
 }

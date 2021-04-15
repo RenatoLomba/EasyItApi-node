@@ -2,7 +2,6 @@ import { getRepository } from 'typeorm';
 import { UserEntity } from '../../entities/UserEntity';
 import User from '../../database/models/User';
 import { IUserRepository } from '../IUserRepository';
-import { UserAvatar } from '../../database/models/UserAvatar';
 
 export class UserRepository implements IUserRepository {
   constructor() {

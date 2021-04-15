@@ -3,7 +3,7 @@ import { UserAvatar } from '../../database/models/UserAvatar';
 import { UserAvatarEntity } from '../../entities/UserAvatarEntity';
 import { IUserAvatarRepository } from '../IUserAvatarRepository';
 
-export class AvatarRepository implements IUserAvatarRepository {
+export class UserAvatarRepoository implements IUserAvatarRepository {
   async selectByUserId(id: string): Promise<UserAvatarEntity> {
     const repository = getRepository(UserAvatar);
     const avatar = await repository.findOne({ where: { user_id: id } });

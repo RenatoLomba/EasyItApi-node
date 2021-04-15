@@ -1,9 +1,13 @@
-import { ENV } from './environment';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// eslint-disable-next-line import/first
 import { app } from './app';
 
-const port = Number(ENV.PORT) || 80;
+const port = Number(process.env.PORT) || 80;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
-  console.log(`${ENV.URL}:${port}`);
+  console.log(`${process.env.COMPLETE_URL}`);
 });

@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import { TestimonialEntity } from '../../entities/TestimonialEntity';
 import { ICreateTestimonialUseCase } from '../../usecases/ICreateTestimonialUseCase';
-import { ITestimonialResult } from '../dtos/testimonial/ITestimonialResult';
 import { TestimonialDTOResult } from '../dtos/testimonial/TestimonialDTOResult';
 import { DefaultError } from '../errors/DefaultError';
 

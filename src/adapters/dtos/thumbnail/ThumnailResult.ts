@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import fs from 'fs';
 import { ThumbnailEntity } from '../../../entities/ThumbnailEntity';
-import { ENV } from '../../../main/environment';
 
 export class ThumbnailResult {
   id: string;
@@ -26,6 +25,6 @@ export class ThumbnailResult {
     const path = resolve('uploads', 'images', thumbnail.file_name);
 
     fs.writeFileSync(path, thumbnail.image);
-    this.image = `${ENV.COMPLETE_URL}/${thumbnail.file_name}`;
+    this.image = `${process.env.COMPLETE_URL}/${thumbnail.file_name}`;
   }
 }

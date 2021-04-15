@@ -1,5 +1,3 @@
-import fs from 'fs';
-import { resolve } from 'path';
 import { Token } from '../../../entities/Token';
 import { AppointmentDTOResult } from '../appointment/AppointmentDTOResult';
 import { UserAvatarResult } from '../avatar/UserAvatarResult';
