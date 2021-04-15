@@ -1,12 +1,12 @@
 import fs from 'fs';
 import { resolve } from 'path';
+import { ExpertAvatarEntity } from '../../../entities/ExpertAvatarEntity';
 import { ENV } from '../../../main/environment';
-import { UserAvatarEntity } from '../../../entities/UserAvatarEntity';
 
-export class UserAvatarResult {
+export class ExpertAvatarResult {
   id: string;
 
-  'user_id': string;
+  'expert_id': string;
 
   'content_type': string;
 
@@ -16,9 +16,9 @@ export class UserAvatarResult {
 
   image: string;
 
-  constructor(avatar: UserAvatarEntity) {
+  constructor(avatar: ExpertAvatarEntity) {
     this.content_type = avatar.content_type;
-    this.user_id = avatar.user_id;
+    this.expert_id = avatar.expert_id;
     this.id = avatar.id;
     this.original_name = avatar.original_name;
     this.file_name = avatar.file_name;

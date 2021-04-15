@@ -1,8 +1,9 @@
 import {
-  Column, Entity, OneToMany, Unique,
+  Column, Entity, OneToMany, OneToOne, Unique,
 } from 'typeorm';
 import { Appointment } from './Appointment';
 import Base from './Base';
+import { ExpertAvatar } from './ExpertAvatar';
 import Favorite from './Favorite';
 import Service from './Service';
 import { Testimonial } from './Testimonial';
@@ -41,6 +42,9 @@ export default class Expert extends Base {
 
   @OneToMany(() => Thumbnail, (thumbnail) => thumbnail.expert)
   thumbnails: Thumbnail[];
+
+  @OneToOne(() => ExpertAvatar, (avatar) => avatar.expert)
+  avatar: ExpertAvatar;
 
   constructor() {
     super();

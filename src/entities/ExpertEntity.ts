@@ -1,6 +1,6 @@
-import { AvatarEntity } from './UserAvatarEntity';
 import { ServiceEntity } from './ServiceEntity';
 import { ThumbnailEntity } from './ThumbnailEntity';
+import { ExpertAvatarEntity } from './ExpertAvatarEntity';
 
 export class ExpertEntity {
   id?: string;
@@ -23,7 +23,7 @@ export class ExpertEntity {
 
   thumbnails?: ThumbnailEntity[];
 
-  avatar?: AvatarEntity;
+  avatar?: ExpertAvatarEntity;
 
   constructor(expert: ExpertEntity) {
     Object.assign(this, expert);

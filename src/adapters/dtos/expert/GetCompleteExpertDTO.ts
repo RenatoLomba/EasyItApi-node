@@ -1,5 +1,5 @@
 import { ExpertEntity } from '../../../entities/ExpertEntity';
-import { AvatarResult } from '../avatar/UserAvatarResult';
+import { ExpertAvatarResult } from '../avatar/ExpertAvatarResult';
 import { ServiceDTOResult } from '../service/ServiceDTOResult';
 import { ThumbnailResult } from '../thumbnail/ThumnailResult';
 
@@ -18,7 +18,7 @@ export class GetCompleteExpertDTO {
 
   thumbnails: ThumbnailResult[];
 
-  avatar?: AvatarResult;
+  avatar?: ExpertAvatarResult;
 
   constructor(props: ExpertEntity) {
     this.id = props.id;
@@ -30,6 +30,8 @@ export class GetCompleteExpertDTO {
       ? props.services.map((service) => new ServiceDTOResult(service)) : [];
     this.thumbnails = props.thumbnails.length > 0
       ? props.thumbnails.map((thumbnail) => new ThumbnailResult(thumbnail)) : [];
-    this.avatar = props.avatar ? new AvatarResult(props.avatar) : null;
+    if (props.avatar) {
+      this.avatar = new ExpertAvatarResult(props.avatar);
+    }
   }
 }
