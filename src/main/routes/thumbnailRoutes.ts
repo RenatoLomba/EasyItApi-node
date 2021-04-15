@@ -5,6 +5,9 @@ import { checkTokenMiddleware } from '../implementations/CheckToken';
 
 const thumbnailsRoutes = Router();
 
-thumbnailsRoutes.post('/', uploader.single('thumbnail'), thumbnailsController.create);
+thumbnailsRoutes.post('/',
+  checkTokenMiddleware.check,
+  uploader.single('thumbnail'),
+  thumbnailsController.create);
 
 export { thumbnailsRoutes };

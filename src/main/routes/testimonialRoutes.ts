@@ -4,6 +4,6 @@ import { testimonialsController } from '../implementations/Testimonial';
 
 const testimonialRoutes = Router();
 
-testimonialRoutes.post('/', testimonialsController.create);
+testimonialRoutes.post('/', checkTokenMiddleware.check, testimonialsController.create);
 
 export { testimonialRoutes };

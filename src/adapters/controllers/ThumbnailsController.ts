@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
 import { IUploadThumbnailUseCase } from '../../usecases/IUploadThumbnailUseCase';
+import { ThumbnailResult } from '../dtos/thumbnail/ThumnailResult';
 import { DefaultError } from '../errors/DefaultError';
 
 export class ThumbnailsController {
@@ -23,6 +24,8 @@ export class ThumbnailsController {
       image: Buffer.from(encodedImage, 'base64'),
       original_name: req.file.originalname,
     });
-    return res.status(200).json(thumbnail);
+    const thumbnailResult = new ThumbnailResult(thumbnail);
+    fs.rmSync(req.file.path);
+    return res.status(200).json(thumbnailResult);
   }
 }

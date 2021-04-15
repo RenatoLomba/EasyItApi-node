@@ -1,3 +1,4 @@
+import { AvatarEntity } from './UserAvatarEntity';
 import { ServiceEntity } from './ServiceEntity';
 import { ThumbnailEntity } from './ThumbnailEntity';
 
@@ -21,6 +22,8 @@ export class ExpertEntity {
   services?: ServiceEntity[];
 
   thumbnails?: ThumbnailEntity[];
+
+  avatar?: AvatarEntity;
 
   constructor(expert: ExpertEntity) {
     Object.assign(this, expert);

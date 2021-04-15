@@ -4,7 +4,7 @@ import { favoritesController } from '../implementations/Favorites';
 
 const favoriteRoutes = Router();
 
-favoriteRoutes.post('/', favoritesController.create);
-favoriteRoutes.delete('/:id', favoritesController.delete);
+favoriteRoutes.post('/', checkTokenMiddleware.check, favoritesController.create);
+favoriteRoutes.delete('/:id', checkTokenMiddleware.check, favoritesController.delete);
 
 export { favoriteRoutes };

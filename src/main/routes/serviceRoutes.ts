@@ -4,6 +4,6 @@ import { servicesController } from '../implementations/Services';
 
 const serviceRoutes = Router();
 
-serviceRoutes.post('/', servicesController.create);
+serviceRoutes.post('/', checkTokenMiddleware.check, servicesController.create);
 
 export { serviceRoutes };

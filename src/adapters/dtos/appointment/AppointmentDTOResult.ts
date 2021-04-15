@@ -1,3 +1,5 @@
+import { AppointmentEntity } from '../../../entities/AppointmentEntity';
+
 export class AppointmentDTOResult {
   id?: string;
 
@@ -9,7 +11,7 @@ export class AppointmentDTOResult {
 
   date: Date;
 
-  constructor(appointment: AppointmentDTOResult) {
+  constructor(appointment: AppointmentEntity) {
     this.id = appointment.id;
     this.date = appointment.date;
     this.expert_id = appointment.expert_id;

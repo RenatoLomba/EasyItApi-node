@@ -1,15 +1,16 @@
 import {
-  Column, Entity, OneToMany, Unique,
+  Column, Entity, JoinColumn, JoinTable, OneToMany, OneToOne, Unique,
 } from 'typeorm';
 import { Appointment } from './Appointment';
 import Base from './Base';
 import Favorite from './Favorite';
 import { Testimonial } from './Testimonial';
+import { UserAvatar } from './UserAvatar';
 // import { v4 as uuid } from 'uuid';
 
 @Entity('users')
 class User extends Base {
-  @Unique('Email', ['email'])
+  @Unique('email', ['email'])
 
   @Column()
   name: string;
@@ -28,6 +29,9 @@ class User extends Base {
 
   @OneToMany(() => Appointment, (appointment) => appointment.user)
   appointments: Appointment[];
+
+  @OneToOne(() => UserAvatar, (userAvatar) => userAvatar.user)
+  avatar: UserAvatar;
 }
 
 export default User;

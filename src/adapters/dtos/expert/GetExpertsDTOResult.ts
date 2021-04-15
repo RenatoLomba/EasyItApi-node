@@ -1,4 +1,5 @@
 import { ExpertEntity } from '../../../entities/ExpertEntity';
+import { UserAvatarResult } from '../avatar/UserAvatarResult';
 
 export class GetExpertsDTOResult {
   id: string;

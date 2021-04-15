@@ -4,6 +4,6 @@ import { appointmentController } from '../implementations/Appointment';
 
 const appointmentRoutes = Router();
 
-appointmentRoutes.post('/', appointmentController.create);
+appointmentRoutes.post('/', checkTokenMiddleware.check, appointmentController.create);
 
 export { appointmentRoutes };

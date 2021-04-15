@@ -2,6 +2,7 @@ import {
   Express,
 } from 'express';
 import { appointmentRoutes } from './routes/appointmentRoutes';
+import { avatarRoutes } from './routes/avatarRoutes';
 import { expertRoutes } from './routes/expertRoutes';
 import { favoriteRoutes } from './routes/favoriteRoutes';
 import { homeRoutes } from './routes/homeRoutes';
@@ -19,6 +20,7 @@ function router(app: Express): void {
   app.use('/testimonials', testimonialRoutes);
   app.use('/appointments', appointmentRoutes);
   app.use('/thumbnails', thumbnailsRoutes);
+  app.use('/avatars', avatarRoutes);
 }
 
 export { router };

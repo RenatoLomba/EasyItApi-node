@@ -5,4 +5,5 @@ export interface IUserRepository {
   selectCompleteAsync(email: string): Promise<UserEntity>
   selectByIdAsync(id: string): Promise<UserEntity>;
   insertAsync(user: UserEntity): Promise<UserEntity>;
+  updateAsync(user: UserEntity): Promise<UserEntity>;
 }

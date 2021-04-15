@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { UserEntity } from '../../entities/UserEntity';
 import User from '../../database/models/User';
 import { IUserRepository } from '../IUserRepository';
+import { UserAvatar } from '../../database/models/UserAvatar';
 
 export class UserRepository implements IUserRepository {
   constructor() {
@@ -9,11 +10,26 @@ export class UserRepository implements IUserRepository {
     this.insertAsync = this.insertAsync.bind(this);
   }
 
+  async updateAsync(user: UserEntity): Promise<UserEntity> {
+    const repository = getRepository(User);
+    await repository.update(user.id, {
+      name: user.name,
+      email: user.email,
+    });
+    const updatedUser = await repository.findOne(user.id);
+    return new UserEntity(updatedUser);
+  }
+
   async selectCompleteAsync(email: string): Promise<UserEntity> {
     const usersRepository = getRepository(User);
     const user = await usersRepository
-      .findOne({ email }, { relations: ['favorites', 'testimonials'] });
-    if (!user) return null;
+      .createQueryBuilder('users')
+      .leftJoinAndSelect('users.favorites', 'favorites')
+      .leftJoinAndSelect('users.testimonials', 'testimonials')
+      .leftJoinAndSelect('users.appointments', 'appointments')
+      .leftJoinAndSelect('users.avatar', 'avatar')
+      .where('users.email = :email', { email })
+      .getOne();
     return new UserEntity(user);
   }
 

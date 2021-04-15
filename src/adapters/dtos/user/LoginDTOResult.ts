@@ -1,4 +1,8 @@
+import fs from 'fs';
+import { resolve } from 'path';
 import { Token } from '../../../entities/Token';
+import { AppointmentDTOResult } from '../appointment/AppointmentDTOResult';
+import { UserAvatarResult } from '../avatar/UserAvatarResult';
 import { FavoriteDTOResult } from '../favorite/FavoriteDTOResult';
 import { TestimonialDTOResult } from '../testimonial/TestimonialDTOResult';
 
@@ -16,6 +20,10 @@ export class LoginDTOResult {
   favorites: FavoriteDTOResult[];
 
   testimonials: TestimonialDTOResult[];
+
+  avatar?: UserAvatarResult;
+
+  appointments?: AppointmentDTOResult[];
 
   constructor(token: Token) {
     this.id = token.user.id;
@@ -40,5 +48,18 @@ export class LoginDTOResult {
           description: testimonial.description,
         } as TestimonialDTOResult
       )) : [];
+    this.appointments = token.user.appointments.length > 0 ? token.user.appointments
+      .map((appointment) => (
+        {
+          date: appointment.date,
+          id: appointment.id,
+          expert_id: appointment.expert_id,
+          service_id: appointment.service_id,
+          user_id: appointment.user_id,
+        }
+      )) : [];
+    if (token.user.avatar) {
+      this.avatar = new UserAvatarResult(token.user.avatar);
+    }
   }
 }

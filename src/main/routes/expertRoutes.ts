@@ -4,8 +4,8 @@ import { expertsController } from '../implementations/Experts';
 
 const expertRoutes = Router();
 
-expertRoutes.post('/', expertsController.create);
-expertRoutes.get('/', expertsController.get);
-expertRoutes.get('/:id', expertsController.show);
+expertRoutes.post('/', checkTokenMiddleware.check, expertsController.create);
+expertRoutes.get('/', checkTokenMiddleware.check, expertsController.get);
+expertRoutes.get('/:id', checkTokenMiddleware.check, expertsController.show);
 
 export { expertRoutes };

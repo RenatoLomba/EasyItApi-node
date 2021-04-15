@@ -5,6 +5,7 @@ import express, {
 } from 'express';
 import 'express-async-errors';
 import { resolve } from 'path';
+import fs from 'fs';
 import { createLocalConnection } from '../database';
 import { router } from './routes';
 
@@ -21,7 +22,7 @@ app.use((err: Error, request: Request, response: Response, _next: NextFunction) 
   if (err instanceof DefaultError) {
     return response.status(err.statusCode).json({ error: err.message });
   }
-  return response.status(500).json({ error: 'Internal Server Error' });
+  return response.status(500).json({ error: err.message });
 });
 
 (async () => { await createLocalConnection(); })();
