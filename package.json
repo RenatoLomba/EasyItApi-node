@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "set NODE_ENV=production&&node dist/main/server.js",
+    "start": "node dist/main/server.js",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "lint": "eslint . --ext .ts,.js",
     "typeorm": "tsnd node_modules/typeorm/cli.js",
