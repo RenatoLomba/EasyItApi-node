@@ -5,7 +5,6 @@ import express, {
 } from 'express';
 import 'express-async-errors';
 import { resolve } from 'path';
-import fs from 'fs';
 import { createLocalConnection } from '../database';
 import { router } from './routes';
 

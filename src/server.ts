@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // eslint-disable-next-line import/first
-import { app } from './app';
+import { app } from './main/app';
 
 const port = Number(process.env.PORT) || 80;
 
