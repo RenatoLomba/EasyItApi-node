@@ -4,6 +4,7 @@ import { ExpertRepository } from '../../repositories/implementations/ExpertRepos
 import { ServiceRepository } from '../../repositories/implementations/ServiceRepository';
 import { UserRepository } from '../../repositories/implementations/UserRepository';
 import { CreateAppointmentUseCase } from '../../usecases/implementations/CreateAppointmentUseCase';
+import { DeleteAppointment } from '../../usecases/implementations/DeleteAppointment';
 
 const appointmentRepository = new AppointmentRepository();
 const expertRepository = new ExpertRepository();
@@ -14,6 +15,10 @@ const createAppointmentUseCase = new CreateAppointmentUseCase(
   appointmentRepository, userRepository, expertRepository, serviceRepository,
 );
 
-const appointmentController = new AppointmentController(createAppointmentUseCase);
+const deleteAppointment = new DeleteAppointment(appointmentRepository);
+
+const appointmentController = new AppointmentController(
+  createAppointmentUseCase, deleteAppointment,
+);
 
 export { appointmentController };
