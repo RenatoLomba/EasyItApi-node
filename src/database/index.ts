@@ -9,14 +9,14 @@ const connectionOptions: ConnectionOptions = {
   database: process.env.NODE_ENV === 'test' ? process.env.DB_TEST : process.env.DB,
   migrations: process.env.LANGUAGE === 'typescript'
     ? ['./src/database/migrations/**.ts']
-    : ['./dist/database/migrations/**.js'],
+    : ['./app/dist/database/migrations/**.js'],
   entities: process.env.LANGUAGE === 'typescript'
     ? ['./src/database/models/**.ts']
-    : ['./dist/database/models/**.js'],
+    : ['./app/dist/database/models/**.js'],
   cli: {
     migrationsDir: process.env.LANGUAGE === 'typescript'
       ? './src/database/migrations'
-      : './dist/database/migrations',
+      : './app/dist/database/migrations',
   },
 };
 
