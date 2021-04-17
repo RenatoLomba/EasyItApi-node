@@ -4,11 +4,6 @@ import { FavoriteEntity } from '../../entities/FavoriteEntity';
 import { IFavoriteRepository } from '../IFavoriteRepository';
 
 export class FavoriteRepository implements IFavoriteRepository {
-  constructor() {
-    this.insertAsync = this.insertAsync.bind(this);
-    this.deleteAsync = this.deleteAsync.bind(this);
-  }
-
   async selectByExpertAndUser(expertId: string, userId: string): Promise<FavoriteEntity> {
     const favoriteRepository = getRepository(Favorite);
     const favorite = await favoriteRepository

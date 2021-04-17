@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { IExpertIsFavorited } from '../../usecases/IExpertIsFavorited';
 import { IFavoriteUseCase } from '../../usecases/IFavoriteUseCase';
 import { IUnfavoriteUseCase } from '../../usecases/IUnfavoriteUseCase';
 import { FavoriteDTOResult } from '../dtos/favorite/FavoriteDTOResult';
@@ -8,9 +9,11 @@ export class FavoritesController {
   constructor(
     private favoriteUseCase: IFavoriteUseCase,
     private unfavoriteUseCase: IUnfavoriteUseCase,
+    private expertIsFavorited: IExpertIsFavorited,
   ) {
     this.create = this.create.bind(this);
     this.delete = this.delete.bind(this);
+    this.isFavorited = this.isFavorited.bind(this);
   }
 
   async create(req: Request, res: Response): Promise<Response> {
@@ -31,5 +34,13 @@ export class FavoritesController {
 
     const result = await this.unfavoriteUseCase.execute(id);
     return response.status(200).json(result);
+  }
+
+  async isFavorited(req: Request, res: Response): Promise<Response> {
+    const { expertId, userId } = req.params;
+    if (!expertId || !userId) throw new DefaultError('Id não informado');
+
+    const result = await this.expertIsFavorited.execute(expertId, userId);
+    return res.status(200).json(result);
   }
 }
