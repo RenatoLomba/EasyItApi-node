@@ -7,5 +7,6 @@ export interface IExpertRepository {
   selectAllAsync(): Promise<ExpertEntity[]>;
   selectByLocationAsync(location: string): Promise<ExpertEntity[]>;
   selectCompleteAsync(id: string): Promise<ExpertEntity>;
+  selectByServiceName(name: string): Promise<ExpertEntity[]>;
   updateAsync(expert: ExpertEntity): Promise<ExpertEntity>;
 }

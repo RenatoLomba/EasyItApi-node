@@ -4,6 +4,19 @@ import { ExpertEntity } from '../../entities/ExpertEntity';
 import { IExpertRepository } from '../IExpertRepository';
 
 export class ExpertRepository implements IExpertRepository {
+  async selectByServiceName(name: string): Promise<ExpertEntity[]> {
+    const expertRepository = getRepository(Expert);
+    const experts = await expertRepository
+      .createQueryBuilder('experts')
+      .leftJoin('experts.services', 'services')
+      .leftJoinAndSelect('experts.avatar', 'avatar')
+      .where('services.name like :name', { name: `%${name}%` })
+      .getMany();
+    if (experts.length === 0) return [];
+    const expertsList = experts.map((expert) => new ExpertEntity(expert));
+    return expertsList;
+  }
+
   async updateAsync(expert: ExpertEntity): Promise<ExpertEntity> {
     const expertRepository = getRepository(Expert);
     await expertRepository.update(expert.id, expert);
