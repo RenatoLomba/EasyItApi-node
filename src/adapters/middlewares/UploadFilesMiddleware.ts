@@ -22,7 +22,7 @@ class MulterConfig implements Options {
     };
     this.storage = multer.diskStorage({
       destination(req, file, cb) {
-        cb(null, resolve(__dirname, '..', '..', '..', 'uploads', 'images'));
+        cb(null, resolve('uploads', 'images'));
       },
       filename(req, file, cb) {
         const rand = Math.floor(Math.random() * (1000 - 1) + 1);
