@@ -13,7 +13,9 @@ import { DefaultError } from '../adapters/errors/DefaultError';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(resolve(__dirname, '..', '..', 'uploads', 'images')));
+app.use(express.static(process.env.LANGUAGE === 'typescript'
+  ? resolve(__dirname, '..', '..', 'uploads', 'images')
+  : resolve(__dirname, '..', '..', '..', 'uploads', 'images')));
 router(app);
 
 // NÃO APAGAR O NEXT FUNCTION, VAI DAR PAU NO ASYNC ERRORS
