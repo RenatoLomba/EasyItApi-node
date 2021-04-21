@@ -25,7 +25,7 @@ export class Appointment extends Base {
   @Column()
   'service_id': string;
 
-  @ManyToOne(() => Expert, (expert) => expert.appointments)
+  @ManyToOne(() => Service, (service) => service.appointments)
   @JoinColumn({ name: 'service_id' })
   service: Service;
 

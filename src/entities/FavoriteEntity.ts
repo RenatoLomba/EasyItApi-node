@@ -1,3 +1,5 @@
+import { ExpertEntity } from './ExpertEntity';
+
 export class FavoriteEntity {
   id?: string;
 
@@ -8,6 +10,8 @@ export class FavoriteEntity {
   'user_id': string;
 
   'expert_id': string;
+
+  expert?: ExpertEntity;
 
   constructor(favorite: FavoriteEntity) {
     Object.assign(this, favorite);

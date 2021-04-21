@@ -1,7 +1,9 @@
 import { Token } from '../../../entities/Token';
 import { AppointmentDTOResult } from '../appointment/AppointmentDTOResult';
 import { UserAvatarResult } from '../avatar/UserAvatarResult';
+import { GetExpertsDTOResult } from '../expert/GetExpertsDTOResult';
 import { FavoriteDTOResult } from '../favorite/FavoriteDTOResult';
+import { ServiceDTOResult } from '../service/ServiceDTOResult';
 import { TestimonialDTOResult } from '../testimonial/TestimonialDTOResult';
 
 export class LoginDTOResult {
@@ -34,6 +36,7 @@ export class LoginDTOResult {
         id: favorite.id,
         expert_id: favorite.expert_id,
         user_id: favorite.user_id,
+        expert: favorite.expert && new GetExpertsDTOResult(favorite.expert),
       } as FavoriteDTOResult
     )) : [];
     this.testimonials = token.user.testimonials.length > 0 ? token.user.testimonials
@@ -54,7 +57,9 @@ export class LoginDTOResult {
           expert_id: appointment.expert_id,
           service_id: appointment.service_id,
           user_id: appointment.user_id,
-        }
+          expert: appointment.expert && new GetExpertsDTOResult(appointment.expert),
+          service: appointment.service && new ServiceDTOResult(appointment.service),
+        } as AppointmentDTOResult
       )) : [];
     if (token.user.avatar) {
       this.avatar = new UserAvatarResult(token.user.avatar);

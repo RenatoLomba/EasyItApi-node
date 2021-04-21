@@ -24,8 +24,11 @@ export class UserRepository implements IUserRepository {
     const user = await usersRepository
       .createQueryBuilder('users')
       .leftJoinAndSelect('users.favorites', 'favorites')
+      .leftJoinAndSelect('favorites.expert', 'expert')
       .leftJoinAndSelect('users.testimonials', 'testimonials')
       .leftJoinAndSelect('users.appointments', 'appointments')
+      .leftJoinAndSelect('appointments.expert', 'experts')
+      .leftJoinAndSelect('appointments.service', 'services')
       .leftJoinAndSelect('users.avatar', 'avatar')
       .where('users.email = :email', { email })
       .getOne();
