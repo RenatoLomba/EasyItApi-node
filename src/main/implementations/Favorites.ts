@@ -10,8 +10,14 @@ const favoriteRepository = new FavoriteRepository();
 const userRepository = new UserRepository();
 const expertRepository = new ExpertRepository();
 
-const favoriteUseCase = new FavoriteUseCase(favoriteRepository, userRepository, expertRepository);
-const unfavoriteUseCase = new UnfavoriteUseCase(favoriteRepository);
+const favoriteUseCase = new FavoriteUseCase(
+  favoriteRepository,
+  userRepository,
+  expertRepository,
+);
+const unfavoriteUseCase = new UnfavoriteUseCase(
+  favoriteRepository, expertRepository, userRepository,
+);
 const expertIsFavorited = new ExpertIsFavorited(
   userRepository, expertRepository, favoriteRepository,
 );

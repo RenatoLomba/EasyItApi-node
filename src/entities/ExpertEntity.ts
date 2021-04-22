@@ -1,6 +1,7 @@
 import { ServiceEntity } from './ServiceEntity';
 import { ThumbnailEntity } from './ThumbnailEntity';
 import { ExpertAvatarEntity } from './ExpertAvatarEntity';
+import { TestimonialEntity } from './TestimonialEntity';
 
 export class ExpertEntity {
   id?: string;
@@ -24,6 +25,8 @@ export class ExpertEntity {
   thumbnails?: ThumbnailEntity[];
 
   avatar?: ExpertAvatarEntity;
+
+  testimonials?: TestimonialEntity[];
 
   constructor(expert: ExpertEntity) {
     Object.assign(this, expert);

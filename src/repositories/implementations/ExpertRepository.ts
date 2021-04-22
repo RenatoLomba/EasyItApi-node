@@ -31,6 +31,7 @@ export class ExpertRepository implements IExpertRepository {
       .leftJoinAndSelect('experts.services', 'services')
       .leftJoinAndSelect('experts.thumbnails', 'thumbnails')
       .leftJoinAndSelect('experts.avatar', 'avatar')
+      .leftJoinAndSelect('experts.testimonials', 'testimonials')
       .where('experts.id = :id', { id })
       .getOne();
     if (!expert) return null;

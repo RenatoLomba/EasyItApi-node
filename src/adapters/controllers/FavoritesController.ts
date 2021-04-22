@@ -29,10 +29,11 @@ export class FavoritesController {
   }
 
   async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-    if (!id) throw new DefaultError('Id de favorito inválido');
+    const { expertId, userId } = request.params;
+    if (!expertId) throw new DefaultError('Id de expert inválido');
+    if (!userId) throw new DefaultError('Id de usuário inválido');
 
-    const result = await this.unfavoriteUseCase.execute(id);
+    const result = await this.unfavoriteUseCase.execute(userId, expertId);
     return response.status(200).json(result);
   }
 

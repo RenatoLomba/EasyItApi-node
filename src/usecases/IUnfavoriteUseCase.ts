@@ -1,3 +1,3 @@
 export interface IUnfavoriteUseCase {
-  execute(id: string): Promise<boolean>;
+  execute(userId: string, expertId: string): Promise<boolean>;
 }

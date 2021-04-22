@@ -1,6 +1,7 @@
 import { ExpertEntity } from '../../../entities/ExpertEntity';
 import { ExpertAvatarResult } from '../avatar/ExpertAvatarResult';
 import { ServiceDTOResult } from '../service/ServiceDTOResult';
+import { TestimonialDTOResult } from '../testimonial/TestimonialDTOResult';
 import { ThumbnailResult } from '../thumbnail/ThumnailResult';
 
 export class GetCompleteExpertDTO {
@@ -20,6 +21,8 @@ export class GetCompleteExpertDTO {
 
   avatar?: ExpertAvatarResult;
 
+  testimonials?: TestimonialDTOResult[];
+
   constructor(props: ExpertEntity) {
     this.id = props.id;
     this.email = props.email;
@@ -33,5 +36,7 @@ export class GetCompleteExpertDTO {
     if (props.avatar) {
       this.avatar = new ExpertAvatarResult(props.avatar);
     }
+    this.testimonials = props.testimonials.length > 0
+      ? props.testimonials.map((testimonial) => new TestimonialDTOResult(testimonial)) : [];
   }
 }
