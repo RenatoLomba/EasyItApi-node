@@ -32,9 +32,11 @@ export class ExpertRepository implements IExpertRepository {
       .leftJoinAndSelect('experts.thumbnails', 'thumbnails')
       .leftJoinAndSelect('experts.avatar', 'avatar')
       .leftJoinAndSelect('experts.testimonials', 'testimonials')
+      .leftJoinAndSelect('testimonials.user', 'testimonialUser')
       .where('experts.id = :id', { id })
       .getOne();
     if (!expert) return null;
+    // console.log(expert);
     return new ExpertEntity(expert);
   }
 

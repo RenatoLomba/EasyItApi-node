@@ -1,3 +1,5 @@
+import { UserEntity } from './UserEntity';
+
 export class TestimonialEntity {
   id?: string;
 
@@ -12,6 +14,8 @@ export class TestimonialEntity {
   description?: string;
 
   stars: number;
+
+  user?: UserEntity;
 
   constructor(testimonial: TestimonialEntity) {
     Object.assign(this, testimonial);
