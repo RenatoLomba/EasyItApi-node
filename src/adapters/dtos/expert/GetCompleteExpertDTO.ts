@@ -24,6 +24,7 @@ export class GetCompleteExpertDTO {
   testimonials?: TestimonialDTOResult[];
 
   constructor(props: ExpertEntity) {
+    // console.log(props.testimonials[0].user);
     this.id = props.id;
     this.email = props.email;
     this.name = props.name;
